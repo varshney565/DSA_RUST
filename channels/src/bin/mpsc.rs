@@ -9,7 +9,6 @@ async fn student(id : i32,tx : Arc<mpsc::Sender<String>>) {
 
 async fn teacher(mut rc : mpsc::Receiver<String>) -> Vec<String> {
     let mut homeworks: Vec<String> = vec![String::new(); 100];
-    println!("{:?}",homeworks);
     while let Some(hw) = rc.recv().await {
         println!("{hw}");
         let mut num = 0;
@@ -31,7 +30,7 @@ async fn teacher(mut rc : mpsc::Receiver<String>) -> Vec<String> {
 
 #[tokio::main]
 async fn main() {
-    let (tx,rc): (mpsc::Sender<String>, mpsc::Receiver<String>) = mpsc::channel(100);
+    let (tx,rc): (mpsc::Sender<String>, mpsc::Receiver<String>) = mpsc::channel(1);
     let ch_arc: Arc<mpsc::Sender<String>> = Arc::new(tx);
     // tokio::task::spawn(async move {
     //         for i in 0..10 {
