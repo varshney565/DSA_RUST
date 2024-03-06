@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn partition1(v : &mut Vec<i32>) {
     // Lomuto's partition
     let mut i: i32 = -1;let mut j = 0;
